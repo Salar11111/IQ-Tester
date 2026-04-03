@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover your cognitive potential with our free online IQ test. 30 questions across 6 categories with instant scoring and visual results.">
+  <title>IQ Tester — Discover Your Cognitive Potential</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Animated Background -->
+  <div class="bg-particles" aria-hidden="true"></div>
+
+  <div class="app" id="app">
+
+    <!-- ===================== LANDING SCREEN ===================== -->
+    <section class="screen landing active" id="screen-landing" aria-label="Welcome">
+      <div class="hero">
+        <div class="hero-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366f1"/>
+                <stop offset="100%" stop-color="#8b5cf6"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 8C20 8 14 18 14 26c0 6 3 10 6 13 2 2 3 4 3 7v2a2 2 0 002 2h14a2 2 0 002-2v-2c0-3 1-5 3-7 3-3 6-7 6-13 0-8-6-18-18-18z" stroke="url(#icon-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M24 52h16M26 56h12" stroke="url(#icon-grad)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="32" cy="28" r="6" stroke="url(#icon-grad)" stroke-width="2" opacity="0.6"/>
+            <path d="M28 28l3 3 5-6" stroke="url(#icon-grad)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+          </svg>
+        </div>
+        <h1>IQ Tester</h1>
+        <p class="subtitle">Discover Your Cognitive Potential</p>
+        <button class="btn-primary" id="btn-start-test" aria-label="Start the IQ test">
+          <span>Start Test</span>
+          <span class="btn-icon" aria-hidden="true">→</span>
+        </button>
+      </div>
+
+      <div class="features">
+        <div class="feature-card">
+          <span class="icon" aria-hidden="true">⏱️</span>
+          <h3>Timed Challenge</h3>
+          <p>20 minutes to complete 30 carefully crafted questions</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon" aria-hidden="true">🧩</span>
+          <h3>6 Categories</h3>
+          <p>Pattern, logic, spatial, numerical, verbal & memory</p>
+        </div>
+        <div class="feature-card">
+          <span class="icon" aria-hidden="true">📊</span>
+          <h3>Instant Results</h3>
+          <p>IQ score with bell curve and detailed category breakdown</p>
+        </div>
+      </div>
+
+      <div class="past-scores" id="past-scores-section">
+        <!-- Populated by JS if history exists -->
+      </div>
+
+      <footer class="disclaimer">
+        ⚠️ This is an entertainment tool and not a clinically validated IQ assessment.
+        Results should not be used for diagnostic purposes.
+      </footer>
+    </section>
+
+    <!-- ===================== TEST SCREEN ===================== -->
+    <section class="screen test-screen" id="screen-test" aria-label="IQ Test">
+      <header class="test-header">
+        <div class="test-header-inner">
+          <div class="timer" id="timer" aria-live="polite" aria-label="Time remaining">
+            <span class="timer-icon" aria-hidden="true">⏱️</span>
+            <span id="timer-display">20:00</span>
+          </div>
+          <div class="progress-section">
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0">
+              <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <span class="progress-text" id="progress-text">0 / 30</span>
+          </div>
+          <button class="btn-secondary btn-sm" id="btn-quit-test">Quit</button>
+        </div>
+      </header>
+
+      <div class="question-area" id="question-area">
+        <span class="category-badge" id="category-badge">Category</span>
+        <h2 class="question-text" id="question-text">Question goes here?</h2>
+        <div class="options-grid" id="options-grid" role="radiogroup" aria-label="Answer options">
+          <!-- Options populated by JS -->
+        </div>
+        <div class="question-nav">
+          <span class="keyboard-hint">Press <kbd>1</kbd>–<kbd>4</kbd> to select, <kbd>Enter</kbd> to continue</span>
+          <button class="btn-primary btn-sm" id="btn-next-question" disabled>
+            <span>Next</span>
+            <span class="btn-icon" aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== RESULTS SCREEN ===================== -->
+    <section class="screen results-screen" id="screen-results" aria-label="Test Results">
+      <div class="results-container">
+        <div class="score-display">
+          <p class="score-label">Your IQ Score</p>
+          <p class="score-value" id="score-value" aria-live="polite">0</p>
+          <p class="score-classification" id="score-classification">—</p>
+          <p class="score-subtitle" id="score-subtitle"></p>
+        </div>
+
+        <div class="bell-curve-section">
+          <h3>Population Distribution</h3>
+          <canvas class="bell-curve-canvas" id="bell-curve-canvas" aria-label="Bell curve showing your IQ score position"></canvas>
+        </div>
+
+        <div class="category-breakdown">
+          <h3>Category Breakdown</h3>
+          <div class="category-bars" id="category-bars">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div class="stats-grid" id="stats-grid">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="results-actions">
+          <button class="btn-primary" id="btn-retake">
+            <span>Retake Test</span>
+            <span class="btn-icon" aria-hidden="true">↻</span>
+          </button>
+          <button class="btn-secondary" id="btn-view-history">
+            <span>📜</span>
+            <span>View History</span>
+          </button>
+        </div>
+
+        <div class="results-disclaimer">
+          ⚠️ This is an entertainment tool and not a clinically validated IQ assessment.
+          Results are for fun and should not be used for any diagnostic or evaluative purpose.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HISTORY SCREEN ===================== -->
+    <section class="screen history-screen" id="screen-history" aria-label="Test History">
+      <div class="history-container">
+        <div class="history-header">
+          <h2>📜 Test History</h2>
+          <div class="history-header-actions">
+            <button class="btn-secondary btn-sm" id="btn-back-home">
+              <span>←</span>
+              <span>Home</span>
+            </button>
+            <button class="btn-danger btn-sm" id="btn-clear-history">
+              <span>🗑️</span>
+              <span>Clear All</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="trend-section" id="trend-section">
+          <h3>Score Trend</h3>
+          <canvas class="trend-canvas" id="trend-canvas" aria-label="Score trend over time"></canvas>
+        </div>
+
+        <div id="history-content">
+          <!-- Table or empty state populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/questions.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/results.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
