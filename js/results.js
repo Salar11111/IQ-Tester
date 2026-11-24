@@ -91,8 +91,8 @@ const ResultsModule = (() => {
 
     // Draw filled curve
     const gradient = ctx.createLinearGradient(0, padding.top, 0, h - padding.bottom);
-    gradient.addColorStop(0, 'rgba(99, 102, 241, 0.3)');
-    gradient.addColorStop(1, 'rgba(99, 102, 241, 0.02)');
+    gradient.addColorStop(0, 'rgba(110, 168, 254, 0.28)');
+    gradient.addColorStop(1, 'rgba(110, 168, 254, 0.02)');
 
     ctx.beginPath();
     ctx.moveTo(iqToX(minIQ), h - padding.bottom);
@@ -112,7 +112,7 @@ const ResultsModule = (() => {
       if (iq === minIQ) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     }
-    ctx.strokeStyle = '#6366f1';
+    ctx.strokeStyle = '#6ea8fe';
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -135,19 +135,19 @@ const ResultsModule = (() => {
     ctx.arc(userX, userY, 6, 0, Math.PI * 2);
     ctx.fillStyle = '#f59e0b';
     ctx.fill();
-    ctx.strokeStyle = '#0a0e1a';
+    ctx.strokeStyle = '#0d1117';
     ctx.lineWidth = 2;
     ctx.stroke();
 
     // Label
-    ctx.font = '600 12px "JetBrains Mono", monospace';
+    ctx.font = '600 12px Inter, system-ui, sans-serif';
     ctx.fillStyle = '#f59e0b';
     ctx.textAlign = 'center';
     ctx.fillText(`You: ${userIQ}`, userX, userY - 14);
 
     // X-axis labels
     ctx.font = '11px "Inter", sans-serif';
-    ctx.fillStyle = '#64748b';
+    ctx.fillStyle = '#a9b4c2';
     ctx.textAlign = 'center';
     for (let iq = 70; iq <= 130; iq += 15) {
       ctx.fillText(iq.toString(), iqToX(iq), h - padding.bottom + 18);
@@ -336,9 +336,9 @@ const ResultsModule = (() => {
       const y = padding.top + chartH / 2;
       ctx.beginPath();
       ctx.arc(x, y, 6, 0, Math.PI * 2);
-      ctx.fillStyle = '#6366f1';
+      ctx.fillStyle = '#6ea8fe';
       ctx.fill();
-      ctx.font = '600 12px "JetBrains Mono", monospace';
+      ctx.font = '600 12px Inter, system-ui, sans-serif';
       ctx.fillStyle = '#f1f5f9';
       ctx.textAlign = 'center';
       ctx.fillText(scores[0].toString(), x, y - 14);
@@ -354,8 +354,8 @@ const ResultsModule = (() => {
 
     // Gradient fill under line
     const gradient = ctx.createLinearGradient(0, padding.top, 0, h - padding.bottom);
-    gradient.addColorStop(0, 'rgba(99, 102, 241, 0.25)');
-    gradient.addColorStop(1, 'rgba(99, 102, 241, 0.01)');
+    gradient.addColorStop(0, 'rgba(110, 168, 254, 0.24)');
+    gradient.addColorStop(1, 'rgba(110, 168, 254, 0.01)');
 
     ctx.beginPath();
     ctx.moveTo(padding.left, h - padding.bottom);
@@ -375,7 +375,7 @@ const ResultsModule = (() => {
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     });
-    ctx.strokeStyle = '#6366f1';
+    ctx.strokeStyle = '#6ea8fe';
     ctx.lineWidth = 2;
     ctx.lineJoin = 'round';
     ctx.stroke();
@@ -386,21 +386,21 @@ const ResultsModule = (() => {
       const y = scoreToY(s);
       ctx.beginPath();
       ctx.arc(x, y, 4, 0, Math.PI * 2);
-      ctx.fillStyle = '#818cf8';
+      ctx.fillStyle = '#9cc7ff';
       ctx.fill();
-      ctx.strokeStyle = '#0a0e1a';
+      ctx.strokeStyle = '#0d1117';
       ctx.lineWidth = 2;
       ctx.stroke();
 
-      ctx.font = '10px "JetBrains Mono", monospace';
-      ctx.fillStyle = '#94a3b8';
+      ctx.font = '10px Inter, system-ui, sans-serif';
+      ctx.fillStyle = '#c3ced9';
       ctx.textAlign = 'center';
       ctx.fillText(s.toString(), x, y - 10);
     });
 
     // Y-axis labels
     ctx.font = '10px "Inter", sans-serif';
-    ctx.fillStyle = '#64748b';
+    ctx.fillStyle = '#a9b4c2';
     ctx.textAlign = 'right';
     const ySteps = 4;
     for (let i = 0; i <= ySteps; i++) {
