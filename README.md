@@ -29,6 +29,12 @@ The code is deliberately small and readable: a question bank, an engine for the 
 
 ---
 
+## 📸 Screenshots
+
+![IQ Tester home screen](docs/screenshots/home.jpg)
+
+---
+
 ## 🚀 Run it
 
 Open `index.html` in a browser. That is the entire setup.
