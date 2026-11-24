@@ -22,8 +22,8 @@
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#6366f1"/>
-                <stop offset="100%" stop-color="#8b5cf6"/>
+                <stop offset="0%" stop-color="#6ea8fe"/>
+                <stop offset="100%" stop-color="#9cc7ff"/>
               </linearGradient>
             </defs>
             <path d="M32 8C20 8 14 18 14 26c0 6 3 10 6 13 2 2 3 4 3 7v2a2 2 0 002 2h14a2 2 0 002-2v-2c0-3 1-5 3-7 3-3 6-7 6-13 0-8-6-18-18-18z" stroke="url(#icon-grad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -87,10 +87,12 @@
       </header>
 
       <div class="question-area" id="question-area">
-        <span class="category-badge" id="category-badge">Category</span>
-        <h2 class="question-text" id="question-text">Question goes here?</h2>
-        <div class="options-grid" id="options-grid" role="radiogroup" aria-label="Answer options">
-          <!-- Options populated by JS -->
+        <div class="question-card">
+          <span class="category-badge" id="category-badge">Category</span>
+          <h2 class="question-text" id="question-text">Question goes here?</h2>
+          <div class="options-grid" id="options-grid" role="radiogroup" aria-label="Answer options">
+            <!-- Options populated by JS -->
+          </div>
         </div>
         <div class="question-nav">
           <span class="keyboard-hint">Press <kbd>1</kbd>–<kbd>4</kbd> to select, <kbd>Enter</kbd> to continue</span>
